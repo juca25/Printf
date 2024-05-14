@@ -6,7 +6,7 @@
 /*   By: juan-ser <juan-ser@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:54:17 by juan-ser          #+#    #+#             */
-/*   Updated: 2024/05/14 11:58:13 by juan-ser         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:31:30 by juan-ser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	check_format(const char *input, va_list *arg)
 	else if (*input == 'd' || *input == 'i')
 		i += ft_putnbr(va_arg(*arg, int));
 	else if (*input == 'u')
-		i += ft_putnbr(va_arg(*arg, unsigned int));
+		i += ft_putnbr_base(va_arg(*arg, unsigned int), "0123456789");
 	else if (*input == 'p')
 		i += ft_pointer(va_arg(*arg, void *));
 	else if (*input == '%')
@@ -49,8 +49,6 @@ int	ft_printf(const char *str, ...)
 		{
 			str++;
 			i += check_format(str, &arg);
-			if (*str == '%')
-				i += ft_putchar('%');
 		}
 		else
 			i += ft_putchar(*str);
