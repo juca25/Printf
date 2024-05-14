@@ -6,7 +6,7 @@
 /*   By: juan-ser <juan-ser@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:54:17 by juan-ser          #+#    #+#             */
-/*   Updated: 2024/05/14 11:14:31 by juan-ser         ###   ########.fr       */
+/*   Updated: 2024/05/14 11:58:13 by juan-ser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,19 @@ static int	check_format(const char *input, va_list *arg)
 
 int	ft_printf(const char *str, ...)
 {
-	va_list	arg;
-	int		i;
+	va_list			arg;
+	unsigned int	i;
 
 	i = 0;
 	va_start(arg, str);
-	while (*str)
+	while (*str != 0)
 	{
 		if (*str == '%')
 		{
 			str++;
 			i += check_format(str, &arg);
+			if (*str == '%')
+				i += ft_putchar('%');
 		}
 		else
 			i += ft_putchar(*str);
@@ -57,9 +59,3 @@ int	ft_printf(const char *str, ...)
 	va_end(arg);
 	return (i);
 }
-
-/*int main()
-{
-	ft_printf("Hello %s, %d, %c, %x, %X, %u, %p, %i, %d, %%, %c, %s\n", "world", 42, 'a', 42, 42, 42, "Hello world", 42, 42, 'a', "world");
-	return (0);
-}*/
