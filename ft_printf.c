@@ -6,32 +6,32 @@
 /*   By: juan-ser <juan-ser@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:54:17 by juan-ser          #+#    #+#             */
-/*   Updated: 2024/05/14 14:31:30 by juan-ser         ###   ########.fr       */
+/*   Updated: 2024/09/09 12:04:55 by juan-ser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	check_format(const char *input, va_list *arg)
+static int	check_format(char imput, va_list *arg)
 {
 	int	i;
 
 	i = 0;
-	if (*input == 'c')
+	if (imput == 'c')
 		i += ft_putchar((char)va_arg(*arg, int));
-	else if (*input == 's')
+	else if (imput == 's')
 		i += ft_putstr(va_arg(*arg, char *));
-	else if (*input == 'X')
+	else if (imput == 'X')
 		i += ft_putnbr_base(va_arg(*arg, unsigned int), "0123456789ABCDEF");
-	else if (*input == 'x')
+	else if (imput == 'x')
 		i += ft_putnbr_base(va_arg(*arg, unsigned int), "0123456789abcdef");
-	else if (*input == 'd' || *input == 'i')
+	else if (imput == 'd' || imput == 'i')
 		i += ft_putnbr(va_arg(*arg, int));
-	else if (*input == 'u')
+	else if (imput == 'u')
 		i += ft_putnbr_base(va_arg(*arg, unsigned int), "0123456789");
-	else if (*input == 'p')
+	else if (imput == 'p')
 		i += ft_pointer(va_arg(*arg, void *));
-	else if (*input == '%')
+	else if (imput == '%')
 		i += ft_putchar('%');
 	return (i);
 }
@@ -40,20 +40,22 @@ int	ft_printf(const char *str, ...)
 {
 	va_list			arg;
 	unsigned int	i;
+	unsigned int	count;
 
 	i = 0;
+	count = 0;
 	va_start(arg, str);
-	while (*str != 0)
+	while (str[i] != 0)
 	{
-		if (*str == '%')
+		if (str[i] == '%')
 		{
-			str++;
-			i += check_format(str, &arg);
+			count += check_format(str[i + 1], &arg);
+			i++;
 		}
 		else
-			i += ft_putchar(*str);
-		str++;
+			count += ft_putchar(str[i]);
+		i++;
 	}
 	va_end(arg);
-	return (i);
+	return (count);
 }
