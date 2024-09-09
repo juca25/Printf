@@ -6,18 +6,18 @@
 #    By: juan-ser <juan-ser@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 09:52:56 by juan-ser          #+#    #+#              #
-#    Updated: 2024/05/14 12:00:31 by juan-ser         ###   ########.fr        #
+#    Updated: 2024/09/09 12:47:05 by juan-ser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
+SRCS = ft_pointer.c ft_printf.c ft_putchar.c ft_putnbr_base.c ft_putnbr.c ft_putstr.c ft_strlen.c
+
 OBJS = $(SRCS:.c=.o)
 NAME = libftprintf.a
 LIB = ft_printf.h
-
-SRCS = ft_pointer.c ft_printf.c ft_putchar.c ft_putnbr_base.c ft_putnbr.c ft_putstr.c ft_strlen.c
 
 
 all: $(NAME)
@@ -27,7 +27,6 @@ $(NAME): $(OBJS) $(LIB)
 
 $(OBJS): $(SRCS) $(LIB)
 	$(CC) $(CFLAGS) -c $(SRCS)
-
 clean:
 	rm -f $(OBJS)
 

@@ -6,7 +6,7 @@
 /*   By: juan-ser <juan-ser@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:54:17 by juan-ser          #+#    #+#             */
-/*   Updated: 2024/09/09 12:04:55 by juan-ser         ###   ########.fr       */
+/*   Updated: 2024/09/09 12:58:29 by juan-ser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	ft_printf(const char *str, ...)
 	unsigned int	i;
 	unsigned int	count;
 
+	if (!str)
+		return (0);
 	i = 0;
 	count = 0;
 	va_start(arg, str);

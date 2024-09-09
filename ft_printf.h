@@ -6,7 +6,7 @@
 /*   By: juan-ser <juan-ser@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:00:17 by juan-ser          #+#    #+#             */
-/*   Updated: 2024/05/14 13:02:48 by juan-ser         ###   ########.fr       */
+/*   Updated: 2024/09/09 12:13:28 by juan-ser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ int					ft_putnbr(int n);
 int					ft_putnbr_base(unsigned long n, char *base);
 unsigned int		ft_strlen(char *str);
 int					ft_pointer(void *ptr);
+int					ft_printf(const char *str, ...);
 #endif
